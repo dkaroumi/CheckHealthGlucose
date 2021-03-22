@@ -7,6 +7,7 @@
 //
 import Foundation
 import KetoMojoSDK
+// Oscar
 
 extension BloodMeterSample {
     var description: String {
