@@ -1,0 +1,4 @@
+framework module BlueSwift {
+  header "BlueSwift-Swift.h"
+  requires objc
+}

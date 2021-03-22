@@ -1,0 +1,11 @@
+framework module KetoMojoSDK {
+  umbrella header "KetoMojoSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module KetoMojoSDK.Swift {
+    header "KetoMojoSDK-Swift.h"
+    requires objc
+}
