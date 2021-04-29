@@ -10,8 +10,8 @@ import UIKit
 import CoreBluetooth
 import KetoMojoSDK
 import Foundation
-import BlueSwift
-import PopupDialog
+//import BlueSwift
+//import PopupDialog
 
 
 class SyncingViewController: UIViewController {
@@ -57,7 +57,8 @@ class SyncingViewController: UIViewController {
         guard
             discoveredDevices.indices.contains(0)
         else {
-            presentPopup(title: "Error!", message: "Could'nt find device\nTry turning it on")
+            //presentPopup(title: "Error!", message: "Could'nt find device\nTry turning it on")
+            print("DJKHAS")
             return
         }
         try! deviceManager.connect(with: discoveredDevices[0])
@@ -87,7 +88,7 @@ func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print("central.state is .unauthorized")
       case .poweredOff:
         print("central.state is .poweredOff")
-        presentPopup(title: "Error!", message: "Bluetooth is off")
+        //presentPopup(title: "Error!", message: "Bluetooth is off")
       case .poweredOn:
         print("central.state is .poweredOn")
         
@@ -116,17 +117,17 @@ extension SyncingViewController: DeviceManagerDelegate {
 
 private extension SyncingViewController {
     
-    func presentPopup(title: String, message: String, completion: (() -> Void)? = nil) {
-        let popupDialog = PopupDialog(title: title, message: message)
-        popupDialog.addButton(PopupDialogButton(title: "Ok", action: nil))
-        present(popupDialog, animated: true, completion: completion)
-    }
-
-    func presentConfirmationPopup(title: String, message: String, acceptedHandler: @escaping () -> Void) {
-        let popupDialog = PopupDialog(title: title, message: message)
-        popupDialog.buttonAlignment = .horizontal
-        popupDialog.addButton(PopupDialogButton(title: "Cancel", action: nil))
-        popupDialog.addButton(PopupDialogButton(title: "Ok", action: acceptedHandler))
-        present(popupDialog, animated: true)
-    }
+//    func presentPopup(title: String, message: String, completion: (() -> Void)? = nil) {
+//        let popupDialog = PopupDialog(title: title, message: message)
+//        popupDialog.addButton(PopupDialogButton(title: "Ok", action: nil))
+//        present(popupDialog, animated: true, completion: completion)
+//    }
+//
+//    func presentConfirmationPopup(title: String, message: String, acceptedHandler: @escaping () -> Void) {
+//        let popupDialog = PopupDialog(title: title, message: message)
+//        popupDialog.buttonAlignment = .horizontal
+//        popupDialog.addButton(PopupDialogButton(title: "Cancel", action: nil))
+//        popupDialog.addButton(PopupDialogButton(title: "Ok", action: acceptedHandler))
+//        present(popupDialog, animated: true)
+//    }
 }

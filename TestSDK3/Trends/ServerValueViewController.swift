@@ -10,9 +10,9 @@
 import Foundation
 import UIKit
 import KetoMojoSDK
-import PopupDialog
+//import PopupDialog
 
-class TrendsViewController: UIViewController{
+class ServerValueViewController: UIViewController{
     private var device: BloodMeterDevice?
     private let deviceManager = DeviceManager.shared
     private var historyData = [BloodMeterRecord]()
@@ -46,7 +46,7 @@ class TrendsViewController: UIViewController{
 }
 
 
-extension TrendsViewController: BloodMeterDeviceDelegate {
+extension ServerValueViewController: BloodMeterDeviceDelegate {
     func bloodMeter(_ device: BloodMeterDevice, didReadSerialNumber serialNumber: String) {
 //        hud?.dismiss(animated: true)
 //        presentPopup(title: "Serial Number", message: serialNumber)

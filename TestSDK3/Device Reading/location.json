@@ -1,0 +1,79 @@
+
+{
+  "phenomenonTime": "2021-04-06T15:02:00.000Z",
+  "resultTime" : "2021-04-16T15:02:00.000Z",
+  "result": {
+    "resourceType": "Observation",
+    "id": "glucose",
+ 
+    "meta": {
+         "profile": [ "http://hl7.org/fhir/StructureDefinition/vitalsigns"
+         ]
+     },
+  
+     "identifier": [
+         {
+           "use": "official",
+           "system": "http://www.bmc.nl/zorgportal/identifiers/observations",
+           "value": "6323"
+         }
+     ],
+     
+     "status": "final",
+     
+     "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "15074-8",
+                "display": "Glucose [Moles/volume] in Blood"
+            }
+
+        ],
+        "text": "Glucose [Moles/volume] in Blood"
+     },
+     
+     "subject": {
+        "reference": "11892829"
+     },
+     
+     "component": [
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://loinc.org",
+                        "code": "15074-8",
+                        "display": "Glucose [Moles/volume] in Blood"
+                    },
+                    {
+                        "system": "http://www.checkhealth.se/devices/clinical-codes",
+                        "code": "vs_bloodglucose",
+                        "display": "Glucose [Moles/volume] in Blood"
+                    }
+                ]
+            },
+            "valueQuantity": {
+                "value": 6.3,
+                "unit": "mmol/l",
+                "system": "http: //unitsofmeasure.org",
+                "code": "mmol/l"
+            }
+        }
+     ]
+  },
+  
+  "FeatureOfInterest": {
+    "@iot.id":2
+  },
+   
+  "Datastream": {
+      "@iot.id": -2
+  }
+}
+
+     
+
+    
+
+ 

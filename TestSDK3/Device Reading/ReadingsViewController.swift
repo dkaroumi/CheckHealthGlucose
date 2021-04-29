@@ -8,7 +8,7 @@
 
 import Foundation
 import KetoMojoSDK
-import PopupDialog
+//import PopupDialog
 import JGProgressHUD
 
 protocol DeviceReadingsDataSource: AnyObject {
@@ -41,13 +41,37 @@ class ReadingsViewController: UIViewController{
         guard
             deviceManager.connectedDevices.count==1
         else {
-            presentPopup(title: "Error!", message: "Could'nt find device\nTry syncing")
+            print("ERROR")
+            //presentPopup(title: "Error!", message: "Could'nt find device\nTry syncing")
             return
         }
         try! device = (deviceManager.connectedDevices[0] as! BloodMeterDevice)
     }
-
+    
     @IBAction func sendPressed(_ sender: Any) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone=TimeZone.current
+        dateFormatter.dateFormat="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let indexPath = IndexPath(row: 0, section: 0)
+        let data = historyData[indexPath.row]
+        let datetime = dateFormatter.string(from: data.date)
+        
+        print(String(data.value.value) + " mmol/L")
+        
+        var response = dosomething()
+        response.changeResult(data.value.value)
+        response.changeResultTime(datetime)
+        response.changePhenomenonTime(datetime)
+        print(response)
+        send(response)
+    
+        
+        
+        
+        
+        
+        
+        
 //        Kod för att skicka värden till server:
       //  for var row in 0...3{
 //            let indexPath = IndexPath(row: 0, section: 0)
@@ -100,7 +124,8 @@ class ReadingsViewController: UIViewController{
 
 extension ReadingsViewController: BloodMeterDeviceDelegate {
     func bloodMeter(_ device: BloodMeterDevice, didReadSerialNumber serialNumber: String) {
-        presentPopup(title: "Serial Number", message: serialNumber)
+        //presentPopup(title: "Serial Number", message: serialNumber)
+        print("SERIAL NUMBER?")
     }
 
     func bloodMeter(_ device: BloodMeterDevice, didReadUnit unit: BloodMeterUnit, description: String) {
@@ -154,7 +179,7 @@ extension ReadingsViewController: BloodMeterDeviceDelegate {
         dateFormatter.timeStyle = .short
         dateFormatter.doesRelativeDateFormatting = true
 
-        presentPopup(title: "Device Date", message: dateFormatter.string(from: date))
+        //presentPopup(title: "Device Date", message: dateFormatter.string(from: date))
     }
 
     func bloodMeter(_ device: BloodMeterDevice, progress: Double) {
@@ -168,25 +193,27 @@ extension ReadingsViewController: BloodMeterDeviceDelegate {
 
 private extension ReadingsViewController {
     
-    func presentPopup(title: String, message: String, completion: (() -> Void)? = nil) {
-        let popupDialog = PopupDialog(title: title, message: message)
-        popupDialog.addButton(PopupDialogButton(title: "Ok", action: nil))
-        present(popupDialog, animated: true, completion: completion)
-    }
+//    func presentPopup(title: String, message: String, completion: (() -> Void)? = nil) {
+//        let popupDialog = PopupDialog(title: title, message: message)
+//        popupDialog.addButton(PopupDialogButton(title: "Ok", action: nil))
+//        present(popupDialog, animated: true, completion: completion)
+//    }
 
-    func presentConfirmationPopup(title: String, message: String, acceptedHandler: @escaping () -> Void) {
-        let popupDialog = PopupDialog(title: title, message: message)
-        popupDialog.buttonAlignment = .horizontal
-        popupDialog.addButton(PopupDialogButton(title: "Cancel", action: nil))
-        popupDialog.addButton(PopupDialogButton(title: "Ok", action: acceptedHandler))
-        present(popupDialog, animated: true)
-    }
+//    func presentConfirmationPopup(title: String, message: String, acceptedHandler: @escaping () -> Void) {
+//        let popupDialog = PopupDialog(title: title, message: message)
+//        popupDialog.buttonAlignment = .horizontal
+//        popupDialog.addButton(PopupDialogButton(title: "Cancel", action: nil))
+//        popupDialog.addButton(PopupDialogButton(title: "Ok", action: acceptedHandler))
+//        present(popupDialog, animated: true)
+//    }
 }
 
 extension ReadingsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // välj kommando för vad som ska hända då cell trycks på
+        print(indexPath)
+        
     }
 
 }
